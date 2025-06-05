@@ -8,9 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Clients\EventHandlers\" />
-    <Folder Include="Clients\Queries\" />
-    <Folder Include="Data\Services\" />
+    <Compile Remove="Clients\EventHandlers\**" />
+    <Compile Remove="Clients\Queries\**" />
+    <Compile Remove="Data\Services\**" />
+    <EmbeddedResource Remove="Clients\EventHandlers\**" />
+    <EmbeddedResource Remove="Clients\Queries\**" />
+    <EmbeddedResource Remove="Data\Services\**" />
+    <None Remove="Clients\EventHandlers\**" />
+    <None Remove="Clients\Queries\**" />
+    <None Remove="Data\Services\**" />
   </ItemGroup>
 
   <ItemGroup>

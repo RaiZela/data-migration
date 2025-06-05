@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Intefaces;
 using Microsoft.AspNetCore.Http;
 
-namespace clients_application.Data.Services;
+namespace BuildingBlocks.Services;
 
 public class CurrentUserService : ICurrentUserService
 {

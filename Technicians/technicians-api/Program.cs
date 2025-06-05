@@ -1,4 +1,6 @@
-using client_infrastructure.Data.Extensions;
+using technicians_api;
+using technicians_infrastructure;
+using technicians_infrastructure.Data.Extensions;
 using BuildingBlocks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,13 +10,18 @@ builder.Services.AddHttpContextAccessor();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.ListenAnyIP(5100); 
+    serverOptions.ListenAnyIP(5100);
 });
 
 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5300);
+});
 
 //TODO Add MassTransit
 
@@ -44,7 +51,6 @@ app.UseRouting();
 
 //TODO Authorization & Authentication Pipeline
 
-app.UseApiServices();
 
 if (app.Environment.IsDevelopment())
 {

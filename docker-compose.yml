@@ -11,14 +11,30 @@ services:
       - backend
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Data Source=sqlserver-datamigration;Database=Clients;User=sa;Password=Your_password123!;Encrypt=False;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Data Source=sqlserver-client;Database=Clients;User=sa;Password=Your_password123!;Encrypt=True;TrustServerCertificate=True;
     depends_on:
-      - sqlserver
+      - sqlserver-client
  
+      
+  technicians-api:
+    image: ${DOCKER_REGISTRY-}techniciansapi
+    build:
+      context: .
+      dockerfile: Technicians/technicians-api/Dockerfile
+    ports:
+      - "5300:5300"
+      - "5003:5003"
+    networks:
+      - backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Data Source=sqlserver-technician;Database=Technicians;User=sa;Password=Your_password123!;Encrypt=True;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver-technician
 
-  sqlserver:
+  sqlserver-client:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver-datamigration
+    container_name: sqlserver-data-migration-client
     ports:
       - "1433:1433"
     environment:
@@ -26,6 +42,18 @@ services:
       ACCEPT_EULA: "Y"
     networks:
       - backend
+
+  sqlserver-technician:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-data-migration-technician
+    ports:
+      - "1435:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "Your_password123!"
+      ACCEPT_EULA: "Y"
+    networks:
+      - backend
+
 
 networks:
   backend:

@@ -1,12 +1,12 @@
 ﻿using BuildingBlocks.Behaviors;
 using BuildingBlocks.Intefaces;
-using clients_application.Data.Services;
+using BuildingBlocks.Services;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace clients_application;
+namespace BuildingBlocks;
 
 public static class DependencyInjection
 {
