@@ -31,6 +31,7 @@ public class CreateClientHandler(IApplicationDbContext dbContext)
     {
 
         var newClient = Client.Create(
+         Guid.NewGuid(),
          ClientDto.FirstName,
          ClientDto.LastName,
          ClientDto.Email,

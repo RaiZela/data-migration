@@ -1,5 +1,6 @@
-using client_infrastructure.Data.Extensions;
 using BuildingBlocks;
+using client_infrastructure.Data.Extensions;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.ListenAnyIP(5100); 
+    serverOptions.ListenAnyIP(5100);
 });
 
 
@@ -21,7 +22,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
-    .AddApiServices();
+    .AddApiServices()
+      .AddMessaging(builder.Configuration);
 
 //TODO: Add logging
 

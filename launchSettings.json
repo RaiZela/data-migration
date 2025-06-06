@@ -5,7 +5,9 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "clients-api": "StartDebugging",
-        "technicians-api": "StartDebugging"
+        "technicians-api": "StartDebugging",
+        "migration-api": "StartDebugging",
+        "work-order-api": "StartDebugging"
       }
     }
   }

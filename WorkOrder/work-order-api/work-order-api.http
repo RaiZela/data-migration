@@ -1,0 +1,6 @@
+@work_order_api_HostAddress = http://localhost:5106
+
+GET {{work_order_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

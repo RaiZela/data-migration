@@ -7,14 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<Compile Remove="technicians\EventHandlers\**" />
-		<Compile Remove="technicians\Queries\**" />
 		<Compile Remove="Data\Services\**" />
-		<EmbeddedResource Remove="technicians\EventHandlers\**" />
-		<EmbeddedResource Remove="technicians\Queries\**" />
 		<EmbeddedResource Remove="Data\Services\**" />
-		<None Remove="technicians\EventHandlers\**" />
-		<None Remove="technicians\Queries\**" />
 		<None Remove="Data\Services\**" />
 	</ItemGroup>
 

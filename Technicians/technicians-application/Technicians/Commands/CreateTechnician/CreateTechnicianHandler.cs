@@ -31,10 +31,9 @@ public class CreateTechnicianHandler(IApplicationDbContext dbContext)
     {
 
         var newTechnician = Technician.Create(
+         TechnicianDto.Id == Guid.Empty ? Guid.NewGuid() : TechnicianDto.Id,
          TechnicianDto.FirstName,
-         TechnicianDto.LastName,
-         TechnicianDto.Email,
-         TechnicianDto.PhoneNumber);
+         TechnicianDto.LastName);
 
         newTechnician.Id = Guid.NewGuid();
 

@@ -10,25 +10,22 @@ public class Technician : Aggregate<Guid>
 
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string Email { get; set; }
-    public string? PhoneNumber { get; set; }
+ 
 
 
     public static Technician Create(
+        Guid Id,
         string FirstName,
-        string LastName,
-        string Email,
-        string PhoneNumber)
+        string LastName)
     {
 
         //TODO - Validate the input parameters
 
         var Technician = new Technician
         {
+            Id = Id==Guid.Empty ? Guid.NewGuid() : Id,
             FirstName = FirstName,
-            LastName = LastName,
-            Email = Email,
-            PhoneNumber = PhoneNumber
+            LastName = LastName
         };
 
 

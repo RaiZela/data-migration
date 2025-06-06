@@ -32,6 +32,35 @@ services:
     depends_on:
       - sqlserver-technician
 
+  migration-api:
+    image: ${DOCKER_REGISTRY-}migrationapi
+    build:
+      context: .
+      dockerfile: MigrationService/migration-api/Dockerfile
+    ports:
+        - "5400:5400"
+        - "5004:5004"
+    networks:
+         - backend
+    environment:
+         - ASPNETCORE_ENVIRONMENT=Development
+
+  work-order-api:
+    image: ${DOCKER_REGISTRY-}workorderapi
+    build:
+      context: .
+      dockerfile: WorkOrder/work-order-api/Dockerfile
+    ports:
+        - "5500:5500"
+        - "5005:5005"
+    networks:
+        - backend
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ConnectionStrings__DefaultConnection=Data Source=sqlserver-workOrder;Database=WorkOrder;User=sa;Password=Your_password123!;Encrypt=True;TrustServerCertificate=True;
+    depends_on:
+        - sqlserver-work-order
+
   sqlserver-client:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver-data-migration-client
@@ -54,7 +83,31 @@ services:
     networks:
       - backend
 
+  sqlserver-work-order:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        container_name: sqlserver-data-migration-work-order
+        ports:
+            - "1437:1433"
+        environment:
+            MSSQL_SA_PASSWORD: "Your_password123!"
+            ACCEPT_EULA: "Y"
+        networks:
+            - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+
+
 
 networks:
   backend:
     driver: bridge
+
+

@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Interceptors;
+using client_infrastructure.Data;
 
 namespace client_infrastructure;
 public static class DependencyInjection

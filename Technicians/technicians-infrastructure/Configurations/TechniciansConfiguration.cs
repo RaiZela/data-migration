@@ -22,12 +22,5 @@ public class TechniciansConfiguration : IEntityTypeConfiguration<Technician>
         builder.Property(c => c.LastName)
             .IsRequired()
             .HasMaxLength(100);
-
-        builder.Property(c => c.Email)
-            .IsRequired()
-            .HasMaxLength(100);
-
-        builder.Property(c => c.PhoneNumber)
-            .HasMaxLength(15);
     }
 }
